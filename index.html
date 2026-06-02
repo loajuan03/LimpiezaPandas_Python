@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe - Limpieza de Datos con Pandas</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:20px;line-height:1.6}
+.container{max-width:1100px;margin:auto;background:#fff;padding:30px;border-radius:10px}
+h1,h2{color:#0b5394}
+pre{background:#272822;color:#f8f8f2;padding:12px;border-radius:6px;overflow-x:auto}
+.resultado{background:#eef7ff;padding:10px;border-left:4px solid #0b5394}
+img{max-width:100%;border:1px solid #ccc}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Limpieza de Datos con Python y Pandas</h1>
+
+<h2>1. Carga del Dataset</h2>
+<pre><code>data = pd.read_csv(ruta)
+print(data.shape)</code></pre>
+<div class="resultado">
+<b>Resultado:</b><br>
+(45215, 17)
+</div>
+<p>El dataset contiene 45.215 registros y 17 columnas.</p>
+
+<h2>2. Exploración Inicial</h2>
+<pre><code>data.head()
+data.info()</code></pre>
+<div class="resultado">
+<img src="info.png" alt="Información del dataset" width="400">
+</div>
+
+<h2>3. Eliminación de Datos Faltantes</h2>
+<pre><code>data.dropna(inplace=True)</code></pre>
+<div class="resultado">
+<img src="datos_iniciales.png" alt="Información del dataset" width="400">
+<img src="sin_nulos.png" alt="Información con dropna" width="400">
+</div>
+
+<h2>4. Verificación de Variables Categóricas</h2>
+<pre><code>for col in cols_cat:
+    print(data[col].nunique())</code></pre>
+<div class="resultado">
+<img src="nunique.png" alt="Valores únicos" width="400">
+</div>
+
+<h2>5. Estadísticas Descriptivas</h2>
+<pre><code>data.describe()</code></pre>
+<div class="resultado">
+<img src="describe.png" alt="Estadísticas descriptivas" width="400">
+</div>
+
+<h2>6. Eliminación de Duplicados</h2>
+<pre><code>data.drop_duplicates(inplace=True)</code></pre>
+<div class="resultado">
+<img src="duplicados.png" alt="Información con drop_duplicates" width="400">
+</div>
+
+<h2>7. Detección de Outliers</h2>
+<pre><code>sns.boxplot(...)</code></pre>
+<div class="resultado">
+<img src="boxplos_edad.png" alt="edad" width="300">
+<img src="boxplot_2.png"  width="300">
+<img src="boxploy_3.png"  width="300">
+<img src="boxplot_4.png"  width="300">
+<img src="boxplot_5.png"  width="300">
+<img src="boxplot_6.png"  width="300">
+<img src="boxplot_7.png"  width="300">
+</div>
+
+<h2>8. Eliminación de Outliers</h2>
+<pre><code>data = data[data['age'] <= 100]
+data = data[data['duration'] > 0]
+data = data[data['previous'] <= 100]</code></pre>
+<div class="resultado">
+<img src="filtros.png"  width="400">
+</div>
+
+<h2>9. Errores Tipográficos</h2>
+<pre><code>data[column] = data[column].str.lower()</code></pre>
+<div class="resultado">
+<img src="subplost_1.png"  width="300">
+<img src="subplost_2.png"  width="300">
+<img src="subplost_3.png"  width="300">
+<img src="subplost_4.png"  width="300">
+<img src="subplost_5.png"  width="300">
+<img src="subplost_6.png"  width="300">
+<img src="subplost_7.png"  width="300">
+<img src="subplost_8.png"  width="300">
+<img src="subplost_9.png"  width="300">
+<img src="subplost_10.png"  width="300">
+<p> actualizado</p>
+<img src="subplost_corregida1.png"  width="300">
+<img src="subplost_corregida2.png"  width="300">
+<img src="subplost_corregida3.png"  width="300">
+<img src="subplost_corregida4.png"  width="300">
+
+</div>
+
+<h2>10. Unificación de Categorías</h2>
+<pre><code>data['job'] = data['job'].str.replace('admin.','administrative')
+data.loc[data['education']=='unk','education']='unknown'</code></pre>
+<div class="resultado">
+<img src="unique.png"  width="400">
+</div>
+
+<h2>11. Resultado Final</h2>
+<pre><code>print(data.shape)</code></pre>
+<div class="resultado">
+<b>Resultado final esperado:</b><br>
+(45189, 17)
+</div>
+
+<h2>12. Conclusión</h2>
+<p>
+Se eliminaron datos faltantes, registros duplicados, valores atípicos y errores tipográficos.
+El dataset quedó listo para el análisis exploratorio de datos.
+</p>
+
+</div>
+</body>
+</html>
